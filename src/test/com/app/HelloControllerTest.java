@@ -1,6 +1,6 @@
-package com.example.app;
+package com.app;
 
-import com.example.app.controller.HelloController;
+import com.app.controller.HelloController;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
