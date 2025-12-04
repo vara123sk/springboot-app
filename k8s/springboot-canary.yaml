@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-app-canary
+  labels:
+    app: sample-app
+    role: canary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-app
+      role: canary
+  template:
+    metadata:
+      labels:
+        app: sample-app
+        role: canary
+    spec:
+      containers:
+        - name: sample-app
+          image: myrepo/sample-springboot-app:CANARY_TAG
+          ports:
+            - containerPort: 8080

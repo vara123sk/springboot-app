@@ -1,0 +1,16 @@
+replicaCount: 3
+
+image:
+  repository: myrepo/springboot-app
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+color: blue
+
+canary:
+  enabled: false
+  weight: 10
