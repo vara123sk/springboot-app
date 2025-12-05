@@ -28,7 +28,7 @@ pipeline {
       }
       post {
         always {
-          junit '**/target/surefire-reports/*.xml'
+          junit '/target/surefire-reports/*.xml'
           sh 'mvn jacoco:report || true'
           archiveArtifacts allowEmptyArchive: true, artifacts: 'target/*.jar'
         }
