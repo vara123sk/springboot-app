@@ -8,14 +8,7 @@ pipeline {
     VERACODE_ID = credentials('veracode-id')
     VERACODE_KEY = credentials('veracode-key')
   } */
-
-   /* environment {
-    REGISTRY = "vara123sk/springboot-app"
-    SONAR = 'sonar-server'             // Jenkins SonarQube server name
-    BD_TOKEN = credentials('blackduck-token')
-    VERACODE_ID = credentials('veracode-id')
-    VERACODE_KEY = credentials('veracode-key')
-  } */
+  
   options {
     timestamps()
     buildDiscarder(logRotator(numToKeepStr: '30'))
