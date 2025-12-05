@@ -28,7 +28,7 @@ It includes:
 ## Helm & Kubernetes
 - `helm upgrade --install sample-app ./helm --set image.tag=<build-number> --set color=green`
 - Service `sample-service` selects pods by color label to perform blue/green switch
-- Canary: use `k8s/sample-canary.yaml` as a simple example OR enable canary values in Helm and customize ingress/traffic weights via your service mesh
+- Canary: use `k8s/sample-canary.yaml` as a simple example OR enable canary values in Helm and customize ingress/traffic weights via your service mesh.
 
 ## Notes / Next steps
 - Replace placeholder credentials and tool-specific code with your organization's integration details
