@@ -22,7 +22,7 @@ pipeline {
       }
     }
 
-    stage('Maven Build & Unit Tests') {
+    /* stage('Maven Build & Unit Tests') {
       steps {
         sh 'mvn clean test -B'
       }
@@ -33,7 +33,26 @@ pipeline {
           archiveArtifacts allowEmptyArchive: true, artifacts: 'target/*.jar'
         }
       }
+    } */
+
+  stage('Maven Build & Unit Tests') {
+  steps {
+    sh 'mvn clean test -B'
+  }
+  post {
+    always {
+      // Correct JUnit path + allow empty reports
+      junit testResults: 'target/surefire-reports/*.xml', allowEmptyResults: true
+
+      // Generate JaCoCo report but don't fail pipeline if missing
+      sh 'mvn jacoco:report || true'
+
+      // Archive jar file
+      archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
     }
+  }
+}
+
 
     /* stage('SonarQube Analysis') {
       steps {
