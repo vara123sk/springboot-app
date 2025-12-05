@@ -1,5 +1,5 @@
 pipeline {
-  agent @jenkins
+  agent  { label 'jenkins' }
 
  /* environment {
     REGISTRY = "vara123sk/springboot-app"
