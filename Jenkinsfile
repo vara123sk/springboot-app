@@ -86,9 +86,8 @@ pipeline {
       steps {
         sh 'bash scripts/deploy_canary.sh ${BUILD_NUMBER}'
       }
-    }
-  } */
-
+    } */
+  }
   post {
     success {
       echo 'Pipeline succeeded.'
