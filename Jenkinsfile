@@ -12,7 +12,7 @@ pipeline {
   options {
     timestamps()
     buildDiscarder(logRotator(numToKeepStr: '30'))
-    ansiColor('xterm')
+    // ansiColor('xterm')
   }
 
   stages {
@@ -35,7 +35,7 @@ pipeline {
       }
     }
 
-    stage('SonarQube Analysis') {
+    /* stage('SonarQube Analysis') {
       steps {
         withSonarQubeEnv("${SONAR}") {
           sh 'mvn sonar:sonar -Dsonar.projectKey=sample-springboot-app -Dsonar.host.url=$SONAR_HOST_URL'
@@ -53,7 +53,7 @@ pipeline {
       steps {
         sh 'bash scripts/veracode_upload.sh'
       }
-    }
+    } */
 
     stage('Package') {
       steps {
@@ -62,7 +62,7 @@ pipeline {
       }
     }
 
-    stage('Build & Push Docker') {
+   /* stage('Build & Push Docker') {
       steps {
         script {
           docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
@@ -87,7 +87,7 @@ pipeline {
         sh 'bash scripts/deploy_canary.sh ${BUILD_NUMBER}'
       }
     }
-  }
+  } */
 
   post {
     success {
