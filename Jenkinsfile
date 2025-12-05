@@ -113,7 +113,7 @@ pipeline {
     }
     failure {
       echo 'Pipeline failed.'
-      mail to: 'dev-team@example.com',
+      mail to: 'vara123sk@gmail.com',
            subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
            body: "See Jenkins console output at ${env.BUILD_URL}"
     }
