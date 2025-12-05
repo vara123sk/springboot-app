@@ -11,6 +11,6 @@ public class HelloControllerTest {
     @Test
     void helloReturnsGreeting() {
         HelloController c = new HelloController();
-        assertThat(c.hello().getBody()).isEqualTo("Hello from sample app");
+        assertThat(c.hello().getBody()).isEqualTo("Hello from Springboot app");
     }
 }
