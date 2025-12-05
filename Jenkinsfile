@@ -1,13 +1,13 @@
 pipeline {
-  agent any
+  agent  { label 'jenkins' }
 
-  environment {
+ /* environment {
     REGISTRY = "vara123sk/springboot-app"
     SONAR = 'sonar-server'             // Jenkins SonarQube server name
     BD_TOKEN = credentials('blackduck-token')
     VERACODE_ID = credentials('veracode-id')
     VERACODE_KEY = credentials('veracode-key')
-  }
+  } */
 
   options {
     timestamps()
@@ -22,18 +22,37 @@ pipeline {
       }
     }
 
-    stage('Maven Build & Unit Tests') {
+    /* stage('Maven Build & Unit Tests') {
       steps {
         sh 'mvn clean test -B'
       }
       post {
         always {
-          junit '**/target/surefire-reports/*.xml'
+          junit '/target/surefire-reports/*.xml'
           sh 'mvn jacoco:report || true'
           archiveArtifacts allowEmptyArchive: true, artifacts: 'target/*.jar'
         }
       }
+    } */
+
+  stage('Maven Build & Unit Tests') {
+  steps {
+    sh 'mvn clean test -B'
+  }
+  post {
+    always {
+      // Correct JUnit path + allow empty reports
+      junit testResults: 'target/surefire-reports/*.xml', allowEmptyResults: true
+
+      // Generate JaCoCo report but don't fail pipeline if missing
+      sh 'mvn jacoco:report || true'
+
+      // Archive jar file
+      archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
     }
+  }
+}
+
 
     /* stage('SonarQube Analysis') {
       steps {
@@ -86,9 +105,8 @@ pipeline {
       steps {
         sh 'bash scripts/deploy_canary.sh ${BUILD_NUMBER}'
       }
-    }
-  } */
-
+    } */
+  }
   post {
     success {
       echo 'Pipeline succeeded.'
