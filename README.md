@@ -34,4 +34,4 @@ It includes:
 - Replace placeholder credentials and tool-specific code with your organization's integration details
 - Harden Dockerfile (non-root user), add multi-stage build if you have native build steps
 - Add Prometheus/Grafana and alerting for rollout verification
-- Integrate pipeline gating (manual approval) for production promotion
+- Integrate pipeline gating (manual approval) for production promotion.
