@@ -21,20 +21,6 @@ pipeline {
         checkout scm
       }
     }
-
-    stage('Maven Build & Unit Tests') {
-      steps {
-        sh 'mvn clean test -B'
-      }
-      post {
-        always {
-          junit '/target/surefire-reports/*.xml'
-          sh 'mvn jacoco:report || true'
-          archiveArtifacts allowEmptyArchive: true, artifacts: 'target/*.jar'
-        }
-      }
-    }
-
     stage('Maven Build & Unit Tests') {
       steps {
         sh 'mvn clean test -B'
