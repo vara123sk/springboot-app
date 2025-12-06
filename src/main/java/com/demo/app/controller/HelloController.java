@@ -11,6 +11,6 @@ public class HelloController {
 
     @GetMapping("/hello")
     public ResponseEntity<String> hello() {
-        return ResponseEntity.ok("Hello from Springboot app");
+        return ResponseEntity.ok("Hello from Sample app");
     }
 }
