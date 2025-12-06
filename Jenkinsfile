@@ -1,13 +1,13 @@
 pipeline {
   agent  { label 'jenkins' }
 
- /* environment {
+  environment {
     REGISTRY = "vara123sk/springboot-app"
     SONAR = 'sonar-server'             // Jenkins SonarQube Server name
     BD_TOKEN = credentials('blackduck-token')
     VERACODE_ID = credentials('veracode-id')
     VERACODE_KEY = credentials('veracode-key')
-  } */
+  } 
 
   options {
     timestamps()
@@ -22,7 +22,7 @@ pipeline {
       }
     }
 
-    /* stage('Maven Build & Unit Tests') {
+    stage('Maven Build & Unit Tests') {
       steps {
         sh 'mvn clean test -B'
       }
@@ -33,7 +33,7 @@ pipeline {
           archiveArtifacts allowEmptyArchive: true, artifacts: 'target/*.jar'
         }
       }
-    } */
+    } 
 
   stage('Maven Build & Unit Tests') {
   steps {
@@ -54,7 +54,7 @@ pipeline {
 }
 
 
-    /* stage('SonarQube Analysis') {
+     stage('SonarQube Analysis') {
       steps {
         withSonarQubeEnv("${SONAR}") {
           sh 'mvn sonar:sonar -Dsonar.projectKey=sample-springboot-app -Dsonar.host.url=$SONAR_HOST_URL'
@@ -72,7 +72,7 @@ pipeline {
       steps {
         sh 'bash scripts/veracode_upload.sh'
       }
-    } */
+    } 
 
     stage('Package') {
       steps {
@@ -81,7 +81,7 @@ pipeline {
       }
     }
 
-   /* stage('Build & Push Docker') {
+    stage('Build & Push Docker') {
       steps {
         script {
           docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
@@ -105,7 +105,7 @@ pipeline {
       steps {
         sh 'bash scripts/deploy_canary.sh ${BUILD_NUMBER}'
       }
-    } */
+    } 
   }
   post {
     success {
