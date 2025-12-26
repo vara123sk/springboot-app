@@ -42,7 +42,7 @@ pipeline {
     stage('SonarQube Analysis') {
       steps {
         withSonarQubeEnv("${SONAR}") {
-          sh 'mvn sonar:sonar -Dsonar.projectKey=sample-springboot-app -Dsonar.host.url=$SONAR_HOST_URL'
+          sh 'mvn sonar:sonar -Dsonar.projectKey=springboot-app -Dsonar.host.url=$SONAR_HOST_URL'
         }
       }
     }
