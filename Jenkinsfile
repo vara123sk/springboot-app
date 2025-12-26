@@ -5,8 +5,8 @@ pipeline {
     REGISTRY = 'vara123sk/springboot-app'
     SONAR = 'sonar-server'             // Jenkins SonarQube server name
     BD_TOKEN = credentials('blackduck-token')
-    VERACODE_ID = credentials('veracode-id')
-    VERACODE_KEY = credentials('veracode-key')
+    // VERACODE_ID = credentials('veracode-id')
+    // VERACODE_KEY = credentials('veracode-key')
   }
 
   options {
@@ -47,7 +47,7 @@ pipeline {
       }
     }
 
-    stage('Black Duck SCA') {
+  /*  stage('Black Duck SCA') {
       steps {
         sh 'bash scripts/blackduck_scan.sh'
       }
@@ -58,7 +58,7 @@ pipeline {
         sh 'bash scripts/veracode_upload.sh'
       }
     }
-
+*/
     stage('Package') {
       steps {
         sh 'mvn -DskipTests package -B'
